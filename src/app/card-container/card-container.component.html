@@ -1,0 +1,14 @@
+<button (click) = "toggleCards()">Toggle Cards</button>
+
+<hr>
+<div *ngIf="cardsVisible; else noCards">
+  <app-card
+    *ngFor="let i of cards; let inx = index"
+    [card]="i"
+    [index]="inx + 1"
+  ></app-card>
+</div>
+
+<ng-template #noCards>
+  <p>Cards are hidden</p>
+</ng-template>

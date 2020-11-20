@@ -1,0 +1,8 @@
+<div class="card">
+  <h2 #myTitle> {{index}} {{ card.title }} </h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, natus.</p>
+  <button (click)="changeTitle(myTitle)" >Change title</button>
+  <button [disabled]="disabled">Test button</button>
+  <input type="text" (input)="inputHeandler($event)" [value]="card.title">
+  <input type="text" [(ngModel)]="card.title">
+</div>

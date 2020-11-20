@@ -1,0 +1,20 @@
+<app-post-form
+(add)="updatePosts($event)"
+[posts]="posts"
+></app-post-form>
+
+<hr>
+
+<app-post
+*ngFor="let post of posts; let inx = index"
+[myPost]="post"
+(remove)="removePost($event)"
+>
+<div #info>
+  <small *ngIf="post.text.length > 10; else short"> Long post </small>
+  <ng-template #short>
+    <small>Short post</small>
+  </ng-template>
+</div>
+
+</app-post>
