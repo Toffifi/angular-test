@@ -1,7 +1,8 @@
-import { AppCounterService } from './../services/app-counter.service';
-import { LocalCounterService } from './../services/local-counter.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { AppCounterService } from '../services/app-counter.service';
+import { LocalCounterService } from '../services/local-counter.service';
 
 @Component({
   selector: 'app-home',

@@ -1,6 +1,7 @@
-import { LocalCounterService } from './../services/local-counter.service';
-import { AppCounterService } from './../services/app-counter.service';
 import { Component, OnInit } from '@angular/core';
+
+import { AppCounterService } from '../services/app-counter.service';
+import { LocalCounterService } from '../services/local-counter.service';
 
 @Component({
   selector: 'app-counter',

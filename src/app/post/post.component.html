@@ -1,5 +1,8 @@
 <div class="card">
-  <a [routerLink]="['/posts', myPost.id]" > {{myPost.title}} </a>
+  <a [routerLink]="['/posts', myPost.id]" >
+    <strong *ngIf="isShowIds">(ID {{myPost.id}} )</strong>
+    {{myPost.title}}
+  </a>
   <p> {{myPost.text}} </p>
 
   <button class="btn" (click)="removePost()">&times;</button>

@@ -1,7 +1,8 @@
+import { Observable, throwError } from 'rxjs';
 import { catchError, delay, map, tap } from 'rxjs/operators';
+
 import { HttpClient, HttpEventType, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
 
 export interface Todo {
   completed: boolean;

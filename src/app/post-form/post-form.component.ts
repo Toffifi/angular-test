@@ -1,5 +1,8 @@
-import { Post } from '../post-container/post-container.component';
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, Input } from '@angular/core';
+import {
+    Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild
+} from '@angular/core';
+
+import { Post, PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post-form',
@@ -15,7 +18,9 @@ export class PostFormComponent implements OnInit {
   title = '';
   text = '';
 
-  constructor() { }
+  constructor(
+    public postService: PostService
+  ) { }
 
   ngOnInit(): void {
   }

@@ -1,36 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-export interface Post {
-  title: string;
-  text: string;
-  id: number;
-}
+import { Post, PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post-container',
   templateUrl: './post-container.component.html',
   styleUrls: ['./post-container.component.scss']
 })
-export class PostContainerComponent {
+export class PostContainerComponent implements DoCheck, OnInit {
 
-  posts: Post[] = [
-    {title: 'Post number 1', text: 'This is my post number 1', id: 0},
-    {title: 'Post number 2', text: 'This is my post number 2', id: 1},
-    {title: 'Post number 3', text: 'This is my post number 2', id: 2},
-    {title: 'Post number 4', text: 'This is my post number 2', id: 3},
-    {title: 'Post number 5', text: 'This is my post number 2', id: 4},
-    {title: 'Post number 6', text: 'This is my post number 2', id: 5},
-  ];
+  constructor(
+    private postService: PostService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
-  constructor() { }
+  posts: Post[] = this.postService.posts;
+  isShowIds = false;
 
-  updatePosts(post: Post): void {
-    post.id = this.posts.length > 0 ? this.posts.sort((a, b) => b.id - a.id)[0].id + 1 : 0;
-    this.posts.unshift(post);
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params: Params) => {
+      this.isShowIds = !!params.showIds;
+    });
   }
 
-  removePost(index: number): void {
-    console.log('posts', this.posts);
-    this.posts = this.posts.filter(e => e.id !== index);
+  ngDoCheck(): void {
+    if (this.posts.length !== this.postService.posts.length){
+      this.posts = this.postService.posts;
+    }
+  }
+
+  updatePosts(post: Post): void {
+    this.postService.updatePosts(post);
+  }
+
+  showIdsProgram(): void {
+    this.router.navigate(['/posts'], {
+      queryParams: {
+        showIds: true
+      }
+    });
   }
 }

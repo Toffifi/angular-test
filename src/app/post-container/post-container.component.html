@@ -5,9 +5,30 @@
 
 <hr>
 
+<button
+  class="btn"
+  [routerLink]="['/posts']"
+  [queryParams]="{showIds: true}"
+>
+  Show Ids
+</button>
+<button
+  class="btn"
+  (click)="showIdsProgram()"
+>
+  Show Ids (program)
+</button>
+<button
+  class="btn"
+  [routerLink]="['/posts']"
+  [queryParams]="{}"
+>
+  Hide Ids
+</button>
 <app-post
 *ngFor="let post of posts; let inx = index"
 [myPost]="post"
+[isShowIds]="isShowIds"
 (remove)="removePost($event)"
 >
 <div #info>
